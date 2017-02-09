@@ -57,3 +57,10 @@ class TestCli(unittest.TestCase):
             result = runner.invoke(report)
             print(result.output)
             self.assertFalse(result.exception)
+
+    def test_cli_graceful_fails(self):
+        with mock.patch('builtins.input', return_value='Feb'):
+            runner = CliRunner()
+            result = runner.invoke(report)
+            print(result.output)
+            self.assertFalse(result.exception)
