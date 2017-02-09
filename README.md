@@ -1,7 +1,7 @@
 # Account Book with Trello
 
 ## Prepare yaml config file
-You can get the api key and token from [here](https://trello.com/app-key)
+You have to get the trello api key and token from [here](https://trello.com/app-key)
 
 ```yaml
 # file name: .acbook.yaml
