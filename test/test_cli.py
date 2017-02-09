@@ -50,3 +50,10 @@ class TestCli(unittest.TestCase):
             result = runner.invoke(report, args=('--config_file=.acbook.yaml',))
             print(result.output)
             self.assertFalse(result.exception)
+
+    def test_cli_without_config(self):
+        with mock.patch('builtins.input', return_value='Jan'):
+            runner = CliRunner()
+            result = runner.invoke(report)
+            print(result.output)
+            self.assertFalse(result.exception)

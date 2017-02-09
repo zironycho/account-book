@@ -6,7 +6,7 @@ import accountbook
 
 
 @click.command()
-@click.option('--config_file', default='', help='path for config file')
+@click.option('--config_file', default='.acbook.yaml', help='path for config file')
 def report(config_file):
     with open(config_file) as f:
         acbook_config = yaml.load(f.read())
