@@ -1,10 +1,13 @@
-## !! Could not determine repository location
 click==6.6
 funcsigs==1.0.2
 humanize==0.5.1
 mock==2.0.0
+oauthlib==2.0.1
 pbr==1.10.0
+py-trello==0.6.0
+python-dateutil==2.6.0
+PyYAML==3.12
 requests==2.10.0
+requests-oauthlib==0.7.0
 six==1.10.0
 wheel==0.24.0
-py-trello==0.6.0
