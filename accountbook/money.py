@@ -26,6 +26,8 @@ def _get_money_part(text):
                 money_part = text.split(')')[2]
         elif '신한카드' in text:
             money_part = text.split(')')[2]
+        elif '씨티카드' in text:
+            money_part = text.split('일시불')[1]
 
     money = re.findall(r'\d[\d,\.]*', money_part)[0]
     money = money.replace(',', '')
