@@ -19,6 +19,7 @@ def report(config_file):
         return
 
     boards = client.list_boards('open')
+
     selected_board = None
     for board in boards:
         if board.name == acbook_config['trello']['board_name']:
@@ -26,6 +27,9 @@ def report(config_file):
 
     if not selected_board:
         print('You don\'t have this board: \'{}\''.format(acbook_config['trello']['board_name']))
+        print('Here is the your board list:')
+        for board in boards:
+            print(board)
         return
 
     print('Lists: ')

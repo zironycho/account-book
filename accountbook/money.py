@@ -13,10 +13,10 @@ def get_money(text):
 def _get_money_part(text):
     money_part = text
 
-    if 'USD ' in text:
+    if 'USD' in text:
         locale = 'USD'
         money_part = text[text.upper().find('USD'):]
-    elif 'THB ' in text:
+    elif 'THB' in text:
         locale = 'THB'
         money_part = text[text.upper().find('THB'):]
     else:
