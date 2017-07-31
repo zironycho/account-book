@@ -24,8 +24,10 @@ def _get_money_part(text):
         if '우리카드' in text:
             if '일시불.승인' not in text:
                 money_part = text.split(')')[2]
+        elif '우리(' in text:
+            money_part = text.split(')')[1]
         elif '신한카드' in text:
-            money_part = text.split(')')[2]
+            money_part = text.split(')')[1]
         elif '씨티카드' in text:
             money_part = text.split('일시불')[1]
 
