@@ -45,8 +45,9 @@ def report(config_file):
     try:
         found = next(filter(lambda x: x.name == list_name, open_lists))
         accountbook.report_outcomes(selected_board, found)
-    except:
+    except Exception as e:
         print('could not find item about: {}'.format(list_name))
+        print(e)
         return
 
 
