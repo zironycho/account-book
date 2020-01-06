@@ -9,13 +9,13 @@ class TestMoney(unittest.TestCase):
 
     def test_currency_success(self):
         self.assertEqual(1200, get_currency('USD'))
-        self.assertEqual(1, get_currency('KR'))
+        self.assertEqual(1, get_currency('KRW'))
 
     def test_currency_fail(self):
         self.assertRaises(Exception, get_currency, 'CN')
 
     def test_get_money(self):
-        with open('./test/samples/card_items.txt', 'rt') as f:
+        with open('./test/samples/card_items.json', 'rt') as f:
             items = json.loads(f.read())['data']
             for item in items:
                 money = get_money(item['text'])

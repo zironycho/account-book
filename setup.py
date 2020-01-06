@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='account-book',
-    version='0.2.1',
+    version='0.2.2',
     py_modules=find_packages(),
     install_requires=[
         'pyyaml',

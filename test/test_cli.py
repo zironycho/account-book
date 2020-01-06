@@ -24,7 +24,7 @@ class TestCli(unittest.TestCase):
         self.member = self.board.get_members('owner')[0]
         self.total = 0
 
-        with open('./test/samples/card_items.txt', 'rt') as f:
+        with open('./test/samples/card_items.json', 'rt') as f:
             items = json.loads(f.read())['data']
             for item in items:
                 text = item['text']
