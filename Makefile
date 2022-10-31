@@ -8,7 +8,7 @@ build:
 
 test:
 	@docker run --rm -it -v $(pwd):/workspace ${name} \
-		pytest -lvs test/test_cli.py::TestCli::test_report_outcomes 
+		pytest -lvs test/test_money.py
 
 sh:
 	@docker run --rm -it -v $(pwd):/workspace ${name} bash

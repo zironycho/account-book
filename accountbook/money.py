@@ -25,9 +25,10 @@ def _get_money_part(text):
             print('우리카드: ' + money_part)
             if 'KRW' in text:
                 money_part = text.split('KRW ')[1]
-                print(money_part)
-            if '일시불.승인' not in text:
+            elif '일시불.승인' not in text:
                 money_part = text.split(')')[2]
+            elif '[해외승인] USD' in text:
+                money_part = text.split('USD ')[1]
         elif '우리(' in text:
             money_part = text.split(')')[1]
         elif '신한카드' in text:
@@ -36,16 +37,18 @@ def _get_money_part(text):
             money_part = text.split('일시불')[1]
         elif '롯데' in text:
             money_part = text.split(' ')[4]
+        elif '현대카드' in text:
+            r = re.findall(r'([\d]*\/[\d]* [\d]*:[\d]*)  (\d[\d,\.]*)원', text)
+            money_part = r[0][1]
 
     money = re.findall(r'\d[\d,\.]*', money_part)[0]
-    # print(money)
     money = money.replace(',', '')
     return float(money), get_currency(locale)
 
 
 def get_currency(locale):
     if locale.upper() == "USD":
-        return 1200
+        return 1400
     elif locale.upper() == "KRW":
         return 1
     elif locale.upper() == "THB":
