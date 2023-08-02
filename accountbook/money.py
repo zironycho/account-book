@@ -36,12 +36,15 @@ def _get_money_part(text):
         elif '씨티카드' in text:
             money_part = text.split('일시불')[1]
         elif '현대카드' in text:
-            r = re.findall(r'([\d]*\/[\d]* [\d]*:[\d]*)  (\d[\d,\.]*)원', text)
+            r = re.findall(r'([\d]*\/[\d]* [\d]*:[\d]*)[\s]+(\d[\d,\.]*)원', text)
             money_part = r[0][1]
         elif '롯데' in text:
-            money_part = text.split(' ')[4]
+            for item in text.split(' ')[3:]:
+                if item.endswith('월'):
+                    money_part = item
+                    break
 
-    money = re.findall(r'\d[\d,\.]*', money_part)[0]
+    money = re.findall(r'-*\d[\d,\.]*', money_part)[0]
     money = money.replace(',', '')
     return float(money), get_currency(locale)
 
