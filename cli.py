@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 import yaml
 import click
-from trello.trelloclient import TrelloClient
+from trello import TrelloClient
 import accountbook
+import requests
+
+class TrelloSession(requests.Session):
+    def request(self, method, url, **kwargs):
+        if method == 'GET':
+            kwargs = {**kwargs, 'data': None}
+        return super().request(method, url, **kwargs)
 
 
 @click.command()
@@ -12,12 +19,17 @@ def report(config_file):
         acbook_config = yaml.load(f.read())
 
     try:
-        client = TrelloClient(acbook_config['trello']['api_key'],
-                              token=acbook_config['trello']['token'])
+        client = TrelloClient(
+            api_key=acbook_config['trello']['api_key'],
+            api_secret=acbook_config['trello']['api_secret'],
+            token=acbook_config['trello']['oauth_token'],
+            token_secret=acbook_config['trello']['oauth_token_secret'],
+            http_service=TrelloSession())
     except Exception as e:
         print(e)
         return
 
+    # boards = client.list_boards('open')
     boards = client.list_boards('open')
 
     selected_board = None
