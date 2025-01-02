@@ -36,11 +36,16 @@ def _get_money_part(text):
         elif '씨티카드' in text:
             money_part = text.split('일시불')[1]
         elif '현대카드' in text:
-            r = re.findall(r'([\d]*\/[\d]* [\d]*:[\d]*)[\s]+(\d[\d,\.]*)원', text)
-            money_part = r[0][1]
+            if '해외승인' in text:
+                r = re.findall(r'AUD (\d[\d,\.]*)', text)
+                money_part = r[0]
+                locale = 'AUD'
+            else:
+                r = re.findall(r'([\d]*\/[\d]* [\d]*:[\d]*)[\s]+(\d[\d,\.]*)원', text)
+                money_part = r[0][1]
         elif '롯데' in text:
-            for item in text.split(' ')[3:]:
-                if item.endswith('월'):
+            for item in text.split(' ')[4:]:
+                if item.endswith('원'):
                     money_part = item
                     break
 
@@ -51,9 +56,11 @@ def _get_money_part(text):
 
 def get_currency(locale):
     if locale.upper() == "USD":
-        return 1400
+        return 1460
     elif locale.upper() == "KRW":
         return 1
     elif locale.upper() == "THB":
         return 33
+    elif locale.upper() == "AUD":
+        return 912
     raise Exception('cannot support currency: {}'.format(locale))
