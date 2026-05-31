@@ -19,14 +19,14 @@ def report_outcomes(board, selected_list):
                 print('[err] Cannot parse this: {}'.format(text))
                 exit()
             total += int(money)
-            print('[{}]: {}'.format(humanize.intcomma(money), text))
+            print('[{:>10}]: {}'.format(humanize.intcomma(money), text))
 
         grouped_cards[k]['member'] = member
         grouped_cards[k]['total'] = total
 
     print('\n')
     for value in grouped_cards.values():
-        print('{}, {}'.format(value['member'].username, humanize.intcomma(value['total'])))
+        print('{}, {:>10}'.format(value['member'].username, humanize.intcomma(value['total'])))
 
     return grouped_cards
 
